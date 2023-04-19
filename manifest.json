@@ -1,0 +1,33 @@
+{
+	"manifest_version": 3,
+	"name": "视频号弹幕助手",
+	"version": "1.0.0",
+	"description": "抓取视频号直播间弹幕",
+	"icons": {
+		"16": "icon.png",
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://channels.weixin.qq.com/platform/live/liveBuild"
+			],
+			"js": [
+				"js/reconnecting-websocket.min.js",
+				"js/main.js"
+			],
+			"run_at": "document_start"
+		}
+	],
+	"web_accessible_resources": [ {
+		"matches": [ "https://channels.weixin.qq.com/*" ],
+		"resources": [ "js/hook.js" ]
+	 } ],
+	"permissions": [
+		"storage"
+	],
+	"action":{
+		"default_popup": "page/popup.html"
+	}
+}
